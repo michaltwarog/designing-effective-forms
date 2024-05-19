@@ -16,16 +16,13 @@ const userSignIn = async () => {
         console.log(user);
         injectUserData(user);
 
-        // Hide the auth modal
         const authModal = document.querySelector('#authModal');
         const authModalInstance = bootstrap.Modal.getInstance(authModal);
         if (authModalInstance) authModalInstance.hide();
 
-        // Show success modal
         const successModal = new bootstrap.Modal(document.getElementById('successModal'));
         successModal.show();
         
-        // Hide sign-in button and show sign-out button
         signInButton.style.display = 'none';
         signOutButton.style.display = 'block';
     } catch (error) {
@@ -33,7 +30,6 @@ const userSignIn = async () => {
         const errorMessage = error.message;
         console.error(`Error [${errorCode}]: ${errorMessage}`);
 
-        // Show error modal
         const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
         document.getElementById('errorModalBody').innerText = `Error: ${errorMessage}`;
         errorModal.show();
@@ -44,16 +40,13 @@ const userSignOut = async () => {
     try {
         await signOut(auth);
 
-        // Show success modal
         const successModal = new bootstrap.Modal(document.getElementById('successModal'));
         document.querySelector('#successModal .modal-body').innerText = "You have successfully signed out!";
         successModal.show();
         
-        // Reset form and reload the page
         document.getElementById('form').reset();
         window.location.reload();
 
-        // Hide sign-out button and show sign-in button
         signOutButton.style.display = 'none';
         signInButton.style.display = 'block';
     } catch (error) {
@@ -61,7 +54,6 @@ const userSignOut = async () => {
         const errorMessage = error.message;
         console.error(`Error [${errorCode}]: ${errorMessage}`);
 
-        // Show error modal
         const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
         document.getElementById('errorModalBody').innerText = `Error: ${errorMessage}`;
         errorModal.show();
